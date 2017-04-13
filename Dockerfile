@@ -9,7 +9,7 @@ RUN apt-get -y update && \
     apt-get -y install python-setuptools && \
     pip install --install-option="--prefix=/opt" umi_tools && \
     apt-get clean -y && \
-    apt-get purge -y python-pip && \
+    apt-get purge -y python-pip cython perl && \
     apt-get autoremove -y
 
 ENV PATH /opt/bin:$PATH
