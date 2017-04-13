@@ -2,16 +2,31 @@ FROM debian:testing
 
 LABEL maintainer Diego Diez <diego10ruiz@gmail.com>
 
-RUN apt-get -y update && \
-    apt-get -y install python && \
-    apt-get -y install python-pip cython && \
-    apt-get -y install python-numpy python-future python-pandas python-pysam && \
-    apt-get -y install python-setuptools && \
-    pip install --install-option="--prefix=/opt" umi_tools && \
+RUN apt-get update -y && \
+    apt-get install -y \
+      build-essential \
+      git \
+      python \
+      python-setuptools \
+      python-six \
+      python-pip && \
+
+    pip install numpy && \
+    pip install future && \
+    pip install pandas && \
+    pip install pysam && \
+    pip install cython && \
+
+    # install umi_tools.
+    cd /tmp && git clone https://github.com/CGATOxford/UMI-tools.git umi_tools && \
+    cd umi_tools && git checkout tags/0.4.3 && \
     python setup.py install && \
     #python setup.py install --prefix /opt && \
     apt-get clean -y && \
-    apt-get purge -y python-pip cython perl && \
+    apt-get purge -y \
+      build-essential \
+      git \
+      python-pip && \
     apt-get autoremove -y
 
 #ENV PATH /opt/bin:$PATH
