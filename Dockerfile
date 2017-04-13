@@ -22,6 +22,9 @@ RUN apt-get update -y && \
     cd umi_tools && git checkout tags/0.4.3 && \
     python setup.py install && \
     #python setup.py install --prefix /opt && \
+
+    # clean up.
+    rm -rf tmp/umi_tools && \
     apt-get clean -y && \
     apt-get purge -y \
       build-essential \
