@@ -2,10 +2,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t ddiez/umitools
+  - docker build -t ddiez/umitools .
 
 script:
-  - docker run ddiez/umitools umi_tools .
+  - docker run ddiez/umitools umi_tools
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
