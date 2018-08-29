@@ -11,4 +11,7 @@ after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
       docker push ddiez/umitools;
+      VERSION=`docker run ddiez/umitools printenv VERSION`;
+      docker tag ddiez/umitools ddiez/umitools:$VERSION;
+      docker push ddiez/umitools:$VERSION;
     fi
