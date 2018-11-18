@@ -2,7 +2,7 @@ FROM debian:testing
 
 LABEL maintainer Diego Diez <diego10ruiz@gmail.com>
 
-ENV VERSION=0.5.4
+ENV VERSION=0.5.5
 
 RUN apt-get update -y && \
     apt-get install -y \
